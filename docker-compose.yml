@@ -1,0 +1,21 @@
+version: '3'
+services:
+        #################################
+        #       Setup backend container
+        ################################
+        server:
+                build: ./backend
+                expose: # ports exposed inside container
+                        - 5000
+                #specify env variables "var_name:'${bash_env_var name}'"
+                environment: 
+                        FLASK_APP: backend/app.py
+                ports: # ports exposed outside container
+                        - "5000:5000"
+                volumes:
+                        - ./backend:/srv/app/backend
+                command: python -m flask run --host=0.0.0.0
+        ###############################
+        #       Setup frontend container
+        ###############################
+        
