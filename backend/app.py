@@ -1,4 +1,3 @@
-import datetime
 from random import randrange
 
 from flask import Flask, jsonify
