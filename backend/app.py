@@ -1,7 +1,7 @@
 from random import randrange
 import datetime
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse
 
@@ -64,6 +64,11 @@ class Graph(Resource):
                 new_graph.parameter_4,
                 new_graph.parameter_5]
         return jsonify({'id': new_graph.id, 'graph_type': graph_type, 'data': data})
+
+    def options(self):
+        resp = Response("Foo bar baz")
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
 
 
 api.add_resource(Graph, '/')
