@@ -6,7 +6,7 @@ import {
 } from "./constants";
 
 export const actionCreateGraph = data => {
-  return {
+	return {
     type: ACTION_CREATE_GRAPH,
     payload: data
   };
@@ -33,14 +33,15 @@ export const actionSetRequestError = error => {
   };
 };
 
-export const actionAddGraph = graphType => dispatch => {
+export const actionAddGraph = graph_type => dispatch => {
   dispatch(actionSetIsFetching(true));
   fetch("http://localhost:5000", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json;charset=utf-8"
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
     },
-    body: JSON.stringify({ graphType })
+    body: JSON.stringify({ graph_type })
   })
     .then(result =>
       result.json().then(data => {

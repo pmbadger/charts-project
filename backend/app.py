@@ -4,11 +4,16 @@ import datetime
 from flask import Flask, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
-user = 'test-task'
-base_name = 'test-task'
+
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+user = 'test_task'
+base_name = 'test_task'
 pwd = 'test-task-password'
 host = 'localhost'
 
@@ -64,11 +69,6 @@ class Graph(Resource):
                 new_graph.parameter_4,
                 new_graph.parameter_5]
         return jsonify({'id': new_graph.id, 'graph_type': graph_type, 'data': data})
-
-    def options(self):
-        resp = Response("Foo bar baz")
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        return resp
 
 
 api.add_resource(Graph, '/')

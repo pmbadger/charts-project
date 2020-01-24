@@ -16,7 +16,7 @@ export const graphReducer = (state = initialState, action) => {
     case ACTION_CREATE_GRAPH:
       return { ...state, graphs: [...state.graphs, action.payload] };
     case ACTION_SET_LOADED_GRAPHS:
-      return { ...state, graphs: [...action.payload] };
+      return { ...state, graphs: action.payload.data };
     case ACTION_SET_IS_FETCHING:
       return {
         ...state,

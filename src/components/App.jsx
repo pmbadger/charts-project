@@ -8,8 +8,6 @@ import { BarChart } from "./BarChart";
 
 export const App = () => {
   const dispath = useDispatch();
-  const data = [65, 59, 180, 81, 56];
-  const data1 = [180, 59, 23, 81, 256];
   const loadInfo = () => {
     dispath(actionLoadGraph());
   };
@@ -17,8 +15,8 @@ export const App = () => {
     dispath(actionAddGraph(type));
   };
   const { graphs, isFetching, error } = useSelector(state => state);
-
-  useEffect(() => {
+  console.log(graphs);
+	useEffect(() => {
     loadInfo();
   }, []);
 
@@ -27,16 +25,14 @@ export const App = () => {
       <div className="container">
         <div className="pieCharts">
           {graphs.map(
-            graph =>
-              graph.graph_type === "pie" && (
-                <PieChart key={graph.id} data={graph.data} />
-              )
-          )}
+		  graph => ((graph.graph_type.graph_type==='pie' || graph.graph_type==='pie') && <PieChart key={graph.id} data={graph.data} />
+		  ))}
+		  
         </div>
         <div className="barCharts">
           {graphs.map(
-            graph =>
-              graph.graph_type === "bar" && (
+            graph =>(
+              (graph.graph_type.graph_type === "bar" || graph.graph_type==='bar') &&
                 <BarChart key={graph.id} data={graph.data} />
               )
           )}

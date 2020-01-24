@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 
-export const PieChart = ({ data }) => {
-  const dataChart = {
+export const PieChart = (props) => {
+	const dataChart = {
     labels: ["Pink", "Blue", "Yellow", "Green", "Purple"],
     datasets: [
       {
-        data,
+	      data:props.data,
         backgroundColor: [
           "#FF6384",
           "#36A2EB",
